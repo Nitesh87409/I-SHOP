@@ -5,6 +5,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import { getCategoryData } from "@/library/api-call";
 import { timesago } from "@/library/helper";
+import DeleteBtn from "@/components/admin/DeleteBtn";
+import ToggleStatus from "@/components/admin/ToggleStatus";
 
 // const CategoryList = () => {
 //     const [categories, setCategories] = useState([
@@ -39,6 +41,7 @@ const CategoryPage = async () => {
                             <th className="p-2 border">ID</th>
                             <th className="p-2 border">Category Name</th>
                             <th className="p-2 border text-center">Slug</th>
+                            <th className="p-2 border text-center">Status</th>
                             <th className="p-2 border text-center">Created</th>
                             <th className="p-2 border text-center"> Action</th>
                         </tr>
@@ -49,17 +52,16 @@ const CategoryPage = async () => {
                                 <td className="p-2 border">{index + 1}</td>
                                 <td className="p-2 border">{category.name}</td>
                                 <td className="p-2 border">{category.slug}</td>
+                                <td className="p-2 border">
+                                    <ToggleStatus status={category.status} />
+                                </td>
                                 <td className="p-2 border">{timesago(category.createdAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3">
                                     <button className="text-yellow-500 hover:text-yellow-600">
                                         <FaEdit />
                                     </button>
-                                    <button
-                                        // onClick={() => handleDelete(category.id)}
-                                        className="text-red-500 hover:text-red-600"
-                                    >
-                                        <FaTrash />
-                                    </button>
+                                    <DeleteBtn deleteURL={`/category/delete/${category._id}`} />
+
                                 </td>
                             </tr>
                         ))}

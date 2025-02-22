@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { axiosApiInstance } from './helper';
 
 
 const getCategoryData = async () => {
 
-    return axios.get(process.env.NEXT_PUBLIC_API_URL + '/category/get-data')
+    return axiosApiInstance.get('/category/get-data')
         .then((response) => {
             return response.data;
 

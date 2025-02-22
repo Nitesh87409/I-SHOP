@@ -1,3 +1,10 @@
+import axios from "axios";
+
+const axiosApiInstance = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL
+})
+
+
 function titleToSlug(title) {
     return title.toLowerCase().trim().replace(/'/g, '').replace(/\s+/g, ' ').replace(/ /g, '-');
 
@@ -27,4 +34,4 @@ function timesago(date) {
     return 'just now';
 }
 
-export { titleToSlug, timesago };
+export { titleToSlug, timesago, axiosApiInstance };

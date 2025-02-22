@@ -29,7 +29,7 @@ const Categorycontroller = {
     },
     async read(req, res) {
         try {
-            const categories = await Category.find();
+            const categories = await Category.find().sort({ createdAt: -1 });
             res.send({ categories, total: categories.length, flag: 1 });
         } catch (error) {
             console.log(error);
@@ -40,13 +40,24 @@ const Categorycontroller = {
             })
         }
     },
-    // delete(req,res){
-    //     try {
-    //         const 
-    //     } catch (error) {
+    delete(req, res) {
+        try {
+            const id = req.params.id
+            console.log(id)
+            Category.findByIdAndDelete(id)
+                .then(
+                    () => {
+                        res.send({ msg: "category Deleted ", flag: 1 })
+                    }
+                ).catch(
+                    () => {
+                        res.send({ msg: "Unable to delete category  ", flag: 0 })
+                    }
+                )
+        } catch (error) {
+            res.send({ msg: "internal server Error ", flag: 0 })
 
-    //     }
-    // }
-
+        }
+    }
 }
 module.exports = Categorycontroller;

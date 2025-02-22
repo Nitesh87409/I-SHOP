@@ -12,8 +12,8 @@ CategoryRouter.get('/get-data',
 
     Categorycontroller.read
 );
-// CategoryRouter.delete(
-//     '/delete/id:',
-//     Categorycontroller.delete
-// )
+CategoryRouter.delete(
+    '/delete/:id',
+    Categorycontroller.delete
+)
 module.exports = CategoryRouter;

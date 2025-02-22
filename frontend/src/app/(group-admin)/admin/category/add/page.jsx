@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRef } from 'react';
-import { titleToSlug } from '@/library/helper';
+import { axiosApiInstance, titleToSlug } from '@/library/helper';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -29,7 +29,7 @@ export default function page() {
 
         }
 
-        axios.post(process.env.NEXT_PUBLIC_API_URL + '/category/create', data)
+        axiosApiInstance.post('/category/create', data)
             .then(response => {
                 if (response.data.flag === 1) {
                     e.target.reset();
