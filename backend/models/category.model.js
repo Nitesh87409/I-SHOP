@@ -15,6 +15,10 @@ const categorySchema = new mongoose.Schema({
     status: {
         type: Boolean,
         default: true
+    },
+    deletedAt: {
+        type: Date,
+        default: null
     }
 }, {
     timestamps: true

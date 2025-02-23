@@ -1,29 +1,28 @@
+
+// import { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import { getCategoryData } from "@/library/api-call";
 import { timesago } from "@/library/helper";
 import DeleteBtn from "@/components/admin/DeleteBtn";
 import ToggleStatus from "@/components/admin/ToggleStatus";
+import { getCategoryDataTrash } from "@/library/api-call";
 
 
 const CategoryPage = async () => {
-    const categoryJson = await getCategoryData();
+    const categoryJson = await getCategoryDataTrash();
     const categories = categoryJson?.categories;
 
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
             <div className=" mx-auto bg-white p-4 rounded-lg shadow-md">
-                <div className="flex justify-between items-center mb-4 col-span-2">
+                <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-semibold">Categories</h2>
-                    <div className="flex col-span-2 gap-3 ">
-                        <Link href="/admin/trash" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
-                            View Tarsh
-                        </Link>
-                        <Link href="/admin/category/add" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
-                            + Add Category
-                        </Link>
-                    </div>
+
+                    <Link href="/admin/category" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
+                        view Category
+                    </Link>
                 </div>
                 <table className="w-full border-collapse">
                     <thead>
