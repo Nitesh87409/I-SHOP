@@ -98,7 +98,6 @@ const Categorycontroller = {
     delete(req, res) {
         try {
             const id = req.params.id
-            console.log(id)
             Category.findByIdAndDelete(id)
                 .then(
                     () => {
@@ -111,6 +110,25 @@ const Categorycontroller = {
                 )
         } catch (error) {
             res.send({ msg: "internal server Error ", flag: 0 })
+
+        }
+    },
+    restore(req, res) {
+        try {
+            const id = req.params.id
+            Category.updateOne({ _id: id }, { deletedAt: null })
+                .then(
+                    () => {
+                        res.send({ msg: "Category Restore succesfully", flag: 1 })
+                    }
+                ).catch(
+                    () => {
+                        res.Send({ msg: "Category not Restore", flag: 0 })
+                    }
+                )
+
+        } catch (error) {
+            res.send({ msg: "internal server Error", flag: 0 })
 
         }
     }

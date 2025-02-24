@@ -25,6 +25,10 @@ CategoryRouter.patch(
     Categorycontroller.moveToTrash
 );
 CategoryRouter.patch(
+    '/restore/:id',
+    Categorycontroller.restore
+)
+CategoryRouter.patch(
     "/change-status",
     Categorycontroller.changeStatus
 )

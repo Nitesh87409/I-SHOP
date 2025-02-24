@@ -38,6 +38,7 @@ export default function DeleteBtn({ flag, deleteURL }) {
 
         } else {
             toast.loading('Deleting....');
+            console.log(deleteURL)
             axiosApiInstance.delete(deleteURL)
                 .then(
                     (response) => {
@@ -53,6 +54,7 @@ export default function DeleteBtn({ flag, deleteURL }) {
                     }
                 ).catch(
                     (error) => {
+                        console.log(error)
                         toast.dismiss();
                         toast.error('somthing went wrong delete')
                     }

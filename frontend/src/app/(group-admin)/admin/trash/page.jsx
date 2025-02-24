@@ -7,6 +7,8 @@ import { timesago } from "@/library/helper";
 import DeleteBtn from "@/components/admin/DeleteBtn";
 import ToggleStatus from "@/components/admin/ToggleStatus";
 import { getCategoryDataTrash } from "@/library/api-call";
+import Restore from "@/components/admin/Restore";
+
 
 
 const CategoryPage = async () => {
@@ -18,7 +20,7 @@ const CategoryPage = async () => {
         <div className="p-6 bg-gray-100 min-h-screen">
             <div className=" mx-auto bg-white p-4 rounded-lg shadow-md">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-semibold">Categories</h2>
+                    <h2 className="text-xl font-semibold">Trash</h2>
 
                     <Link href="/admin/category" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
                         view Category
@@ -42,14 +44,16 @@ const CategoryPage = async () => {
                                 <td className="p-2 border">{category.name}</td>
                                 <td className="p-2 border">{category.slug}</td>
                                 <td className="p-2 border">
+
+
                                     <ToggleStatus apiURl={"/category/change-status/"} status={category.status} id={category._id} />
                                 </td>
                                 <td className="p-2 border">{timesago(category.createdAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3">
-                                    <button className="text-yellow-500 hover:text-yellow-600">
-                                        <FaEdit />
-                                    </button>
-                                    <DeleteBtn flag={1} deleteURL={`/category/move-to-trash/${category._id}`} />
+
+                                    <Restore apiurl={`/category/restore/${category._id}`} className="text-xl" />
+
+                                    <DeleteBtn flag={0} deleteURL={`/category/delete/${category._id}`} />
 
                                 </td>
                             </tr>
