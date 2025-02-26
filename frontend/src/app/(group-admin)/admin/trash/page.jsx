@@ -50,9 +50,9 @@ const CategoryPage = async () => {
                                 <td className="p-2 border">{timesago(category.deletedAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3">
 
-                                    <Restore apiurl={`/category/restore/${category._id}`} className="text-xl" />
+                                    <Restore apiurl={`/category/restore/${category._id}`} className="text-xl my-[10px]" />
 
-                                    <DeleteBtn flag={0} deleteURL={`/category/delete/${category._id}`} />
+                                    <DeleteBtn flag={0} deleteURL={`/category/delete/${category._id}`} className="my-[10px]" />
 
                                 </td>
                             </tr>

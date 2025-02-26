@@ -48,7 +48,7 @@ const CategoryPage = async () => {
                                 <td className="p-2 border">{timesago(category.createdAt)}/{timesago(category.updatedAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3">
                                     <Link href={`/admin/category/edit/${category._id}`}>
-                                    <button className="text-yellow-500 hover:text-yellow-600">
+                                    <button className="text-yellow-500 hover:text-yellow-600  my-[10px]">
                                         <FaEdit  />
                                     </button>
                                     </Link>

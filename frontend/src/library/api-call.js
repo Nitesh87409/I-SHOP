@@ -16,6 +16,18 @@ const getCategoryData = async (id = null) => {
         })
 };
 
+const getColorData = async () => {
+    return axiosApiInstance.get('/color/get-data')
+        .then((response) => {
+            return response.data;
+
+        })
+        .catch((error) => {
+            return null;
+        })
+
+};
+
 const getCategoryDataTrash = async () => {
     return axiosApiInstance.get('/category/trash-data')
         .then((response) => {
@@ -28,4 +40,4 @@ const getCategoryDataTrash = async () => {
 
 };
 
-export { getCategoryData, getCategoryDataTrash };
+export { getCategoryData, getCategoryDataTrash, getColorData };
