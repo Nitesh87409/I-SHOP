@@ -1,11 +1,7 @@
 
-// import { useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
-import { getCategoryData } from "@/library/api-call";
 import { timesago } from "@/library/helper";
 import DeleteBtn from "@/components/admin/DeleteBtn";
-import ToggleStatus from "@/components/admin/ToggleStatus";
 import { getCategoryDataTrash } from "@/library/api-call";
 import Restore from "@/components/admin/Restore";
 
@@ -33,22 +29,25 @@ const CategoryPage = async () => {
                             <th className="p-2 border">Category Name</th>
                             <th className="p-2 border text-center">Slug</th>
                             <th className="p-2 border text-center">Status</th>
-                            <th className="p-2 border text-center">Created</th>
+                            <th className="p-2 border text-center">deleted</th>
                             <th className="p-2 border text-center"> Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {categoryJson != null && categories.map((category, index) => (
-                            <tr key={category._id} className="hover:bg-gray-50">
+                            <tr key={category._id} className="hover:bg-gray-50 text-center">
                                 <td className="p-2 border">{index + 1}</td>
                                 <td className="p-2 border">{category.name}</td>
                                 <td className="p-2 border">{category.slug}</td>
                                 <td className="p-2 border">
 
 
-                                    <ToggleStatus apiURl={"/category/change-status/"} status={category.status} id={category._id} />
+                                    <button className={`${category.status ? 'bg-green-500' : 'bg-red-500'} 
+            hover:text-${category.status  ? 'green' : 'red'}-600 mx-2 p-2 rounded-md text-white`}>
+                                        {category.status ? 'Active' : 'Inactive'}
+                                    </button>
                                 </td>
-                                <td className="p-2 border">{timesago(category.createdAt)}</td>
+                                <td className="p-2 border">{timesago(category.deletedAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3">
 
                                     <Restore apiurl={`/category/restore/${category._id}`} className="text-xl" />
@@ -59,7 +58,9 @@ const CategoryPage = async () => {
                             </tr>
                         ))}
                     </tbody>
+
                 </table>
+                <h1>{categories?.length == 0 && "Trash is empty..."}</h1>
             </div>
         </div>
     );

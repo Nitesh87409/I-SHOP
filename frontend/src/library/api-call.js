@@ -2,9 +2,11 @@ import axios from 'axios';
 import { axiosApiInstance } from './helper';
 
 
-const getCategoryData = async () => {
+const getCategoryData = async (id = null) => {
+    let api = 'category/get-data';
+    if (id) api += `/${id}`;
 
-    return axiosApiInstance.get('/category/get-data')
+    return axiosApiInstance.get(`${api}`)
         .then((response) => {
             return response.data;
 

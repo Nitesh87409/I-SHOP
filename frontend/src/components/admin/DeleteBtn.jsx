@@ -1,16 +1,19 @@
 "use client"
 
 import { axiosApiInstance } from '@/library/helper';
-import React from 'react'
+import React, { useState } from 'react'
 import { FaTrash } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import ConfirmBox from './ConfirmBox';
 
 export default function DeleteBtn({ flag, deleteURL }) {
     const router = useRouter()
+    const [toggleconfirm, settoggleconfirm] = useState(false)
 
-    const DeleteHandler = () => {
-        toast.loading('moving to tarsh..');
+    const deleteProcess = () => {
+
+        // toast.loading('moving to tarsh..');
         if (flag == 1) {
 
             axiosApiInstance.patch(deleteURL)
@@ -35,9 +38,8 @@ export default function DeleteBtn({ flag, deleteURL }) {
                     }
                 )
 
-
         } else {
-            toast.loading('Deleting....');
+            // toast.loading('Deleting....');
             console.log(deleteURL)
             axiosApiInstance.delete(deleteURL)
                 .then(
@@ -59,13 +61,18 @@ export default function DeleteBtn({ flag, deleteURL }) {
                         toast.error('somthing went wrong delete')
                     }
                 )
-
         }
+    }
+
+    const DeleteHandler = () => {
+        settoggleconfirm(true)
 
     }
 
     return (
         <>
+            {toggleconfirm && <ConfirmBox onDelClick={deleteProcess} onCanClick={() => { settoggleconfirm(false) }} flag={flag} />}
+
             <button
                 onClick={DeleteHandler}
                 className="text-red-500 hover:text-red-600"

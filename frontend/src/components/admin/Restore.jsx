@@ -24,7 +24,6 @@ export default function Restore({ apiurl }) {
                 }
             ).catch(
                 (error) => {
-                    console.log(error, "fhsdf")
 
                     toast.error('somthing went wrong ')
 

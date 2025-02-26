@@ -3,22 +3,26 @@ const Categorycontroller = require('../controllers/category.controller');
 const CategoryRouter = express.Router();
 
 
-CategoryRouter.post('/create',
-
+CategoryRouter.post(
+    '/create',
     Categorycontroller.create
 );
 
-CategoryRouter.get('/get-data',
-
+CategoryRouter.get(
+    '/get-data/:id?',
     Categorycontroller.read
 );
-CategoryRouter.get('/trash-data',
-
+CategoryRouter.get(
+    '/trash-data',
     Categorycontroller.readTrashData
 );
 CategoryRouter.delete(
     '/delete/:id',
     Categorycontroller.delete
+);
+CategoryRouter.put(
+    '/update/:id',
+    Categorycontroller.update
 );
 CategoryRouter.patch(
     '/move-to-trash/:id',

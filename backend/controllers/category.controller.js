@@ -2,6 +2,27 @@
 const Category = require('../models/category.model');
 const Categorycontroller = {
 
+    async update(req, res) {
+try {
+    const id = req.params.id;
+    const data = req.body;
+    Category.findByIdAndUpdate(id,{name:data.name,slug:data.slug})
+    .then(
+        ()=>{
+            res.send({msg:"Category updated",flag:1});
+        }
+    ).catch(
+        ()=>{
+            res.send({msg:"Unable to update category",flag:0});
+        }
+    )
+    
+} catch (error) {
+    res.send({msg:"Internal server error",flag:0});
+    
+}
+    },
+
     async moveToTrash(req, res) {
         try {
             const id = req.params.id;
@@ -84,8 +105,16 @@ const Categorycontroller = {
     },
     async read(req, res) {
         try {
-            const categories = await Category.find({ deletedAt: null }).sort({ createdAt: -1 });
-            res.send({ categories, total: categories.length, flag: 1 });
+            let categories ;
+            if (req.params.id) {
+
+                categories  = await Category.findById( req.params.id)
+                res.send({ categories, flag: 1 });
+            }else{
+                categories  = await Category.find({ deletedAt: null }).sort({ createdAt: -1 });
+                res.send({ categories, total: categories.length, flag: 1 });
+            }
+           
         } catch (error) {
             console.log(error);
 

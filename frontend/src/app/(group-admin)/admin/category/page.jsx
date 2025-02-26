@@ -32,24 +32,26 @@ const CategoryPage = async () => {
                             <th className="p-2 border">Category Name</th>
                             <th className="p-2 border text-center">Slug</th>
                             <th className="p-2 border text-center">Status</th>
-                            <th className="p-2 border text-center">Created</th>
+                            <th className="p-2 border text-center">Created/Updated</th>
                             <th className="p-2 border text-center"> Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {categoryJson != null && categories.map((category, index) => (
-                            <tr key={category._id} className="hover:bg-gray-50">
+                            <tr key={category._id} className="hover:bg-gray-50 text-center">
                                 <td className="p-2 border">{index + 1}</td>
                                 <td className="p-2 border">{category.name}</td>
                                 <td className="p-2 border">{category.slug}</td>
                                 <td className="p-2 border">
                                     <ToggleStatus apiURl={"/category/change-status/"} status={category.status} id={category._id} />
                                 </td>
-                                <td className="p-2 border">{timesago(category.createdAt)}</td>
+                                <td className="p-2 border">{timesago(category.createdAt)}/{timesago(category.updatedAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3">
+                                    <Link href={`/admin/category/edit/${category._id}`}>
                                     <button className="text-yellow-500 hover:text-yellow-600">
-                                        <FaEdit />
+                                        <FaEdit  />
                                     </button>
+                                    </Link>
                                     <DeleteBtn flag={1} deleteURL={`/category/move-to-trash/${category._id}`} />
 
                                 </td>
@@ -61,5 +63,4 @@ const CategoryPage = async () => {
         </div>
     );
 };
-
 export default CategoryPage;
