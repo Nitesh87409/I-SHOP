@@ -1,9 +1,9 @@
 
 import Link from "next/link";
 import { timesago } from "@/library/helper";
-import DeleteBtn from "@/components/admin/DeleteBtn";
+import {DeleteBtn} from "@/components/admin/DeleteBtn";
 import { getCategoryDataTrash } from "@/library/api-call";
-import Restore from "@/components/admin/Restore";
+import {Restore} from "@/components/admin/Restore";
 
 
 

@@ -13,6 +13,7 @@ export default function page() {
     // const paramsid = use(params); //useParams()
     const {category_id} = useParams();
     // const categoryId = paramsid.category_id;
+    // console.log(params);
 
     const nameref = useRef();
     const slugref = useRef();
@@ -50,7 +51,7 @@ export default function page() {
 
         }
 
-        axiosApiInstance.put(`/category/update/${categoryId}`, data)
+        axiosApiInstance.put(`/category/update/${category_id}`, data)
             .then(response => {
                 if (response.data.flag === 1) {
                    

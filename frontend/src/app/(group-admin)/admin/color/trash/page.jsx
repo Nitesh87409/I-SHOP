@@ -1,13 +1,14 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
-import { getColorData } from "@/library/api-call";
+import { getColorDataTrash } from "@/library/api-call";
 import { timesago } from "@/library/helper";
 import {DeleteBtncolor} from "@/components/admin/DeleteBtn";
 import {ToggleStatuscolor} from "@/components/admin/ToggleStatus";
+import { RestoreColor } from "@/components/admin/Restore";
 
 
 const ColorPage = async () => {
-    const colorJson = await getColorData();
+    const colorJson = await getColorDataTrash();
     const colordata = colorJson?.color;
 
     return (
@@ -16,11 +17,9 @@ const ColorPage = async () => {
                 <div className="flex justify-between items-center mb-4 col-span-2">
                     <h2 className="text-xl font-semibold">Color Category</h2>
                     <div className="flex col-span-2 gap-3 ">
-                        <Link href="/admin/color/trash" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
-                            View Tarsh
-                        </Link>
-                        <Link href="/admin/color/add" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
-                            + Add Color
+                        
+                        <Link href="/admin/color" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
+                            Back to view
                         </Link>
                     </div>
                 </div>
@@ -54,12 +53,10 @@ const ColorPage = async () => {
                                 </td>
                                 <td className="p-2 border">{timesago(color.createdAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3 ">
-                                    <Link href={`/admin/color/edit/${color._id}`}>
-                                        <button className="text-yellow-500 hover:text-yellow-600 my-[10px]">
-                                            <FaEdit/>
-                                        </button>
-                                    </Link>
-                                    <DeleteBtncolor flag={1} deleteURL={`/color/move-to-trash/${color._id}`} />
+                                     <RestoreColor apiurl={`/color/restore/${color._id}`} className="text-xl my-[10px]" />
+
+
+                                    <DeleteBtncolor flag={0} deleteURL={`/color/delete/${color._id}`} />
 
                                 </td>
                             </tr>

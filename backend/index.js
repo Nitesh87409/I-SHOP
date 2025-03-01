@@ -4,16 +4,15 @@ const CategoryRouter = require('./routers/category.router');
 const app = express();
 const cors = require('cors');
 const ColorRouter = require('./routers/color.router');
+const productRouter = require('./routers/product.router')
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 
 
 app.use(express.json());
-app.use("/category", CategoryRouter
-
-
-);
+app.use("/category", CategoryRouter);
 app.use("/color",ColorRouter);
+app.use("/product",productRouter);
 
 mongoose.connect('mongodb://localhost:27017/',
     {

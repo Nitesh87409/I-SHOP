@@ -2,8 +2,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import { getCategoryData } from "@/library/api-call";
 import { timesago } from "@/library/helper";
-import DeleteBtn from "@/components/admin/DeleteBtn";
-import ToggleStatus from "@/components/admin/ToggleStatus";
+import {DeleteBtn} from "@/components/admin/DeleteBtn";
+import {ToggleStatus} from "@/components/admin/ToggleStatus";
 
 
 const CategoryPage = async () => {
@@ -17,7 +17,7 @@ const CategoryPage = async () => {
                 <div className="flex justify-between items-center mb-4 col-span-2">
                     <h2 className="text-xl font-semibold">Categories</h2>
                     <div className="flex col-span-2 gap-3 ">
-                        <Link href="/admin/trash" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
+                        <Link href="/admin/category/trash" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
                             View Tarsh
                         </Link>
                         <Link href="/admin/category/add" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
