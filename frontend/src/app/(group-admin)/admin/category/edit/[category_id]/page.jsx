@@ -45,6 +45,7 @@ export default function page() {
             name: nameref.current.value,
             slug: slugref.current.value
         }
+        
         if (nameref.current.value == '') {
             toast.error('Please enter category name');
             return;
@@ -53,7 +54,7 @@ export default function page() {
 
         axiosApiInstance.put(`/category/update/${category_id}`, data)
             .then(response => {
-                if (response.data.flag === 1) {
+                if (response.data.flag == 1) {
                    
                     toast.success(response.data.msg);
                 } else {

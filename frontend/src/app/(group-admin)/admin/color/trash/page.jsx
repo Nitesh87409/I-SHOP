@@ -2,8 +2,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import { getColorDataTrash } from "@/library/api-call";
 import { timesago } from "@/library/helper";
-import {DeleteBtncolor} from "@/components/admin/DeleteBtn";
-import {ToggleStatuscolor} from "@/components/admin/ToggleStatus";
+import { DeleteBtncolor } from "@/components/admin/DeleteBtn";
+import { ToggleStatuscolor } from "@/components/admin/ToggleStatus";
 import { RestoreColor } from "@/components/admin/Restore";
 
 
@@ -15,9 +15,9 @@ const ColorPage = async () => {
         <div className="p-6 bg-gray-100 min-h-screen">
             <div className=" mx-auto bg-white p-4 rounded-lg shadow-md">
                 <div className="flex justify-between items-center mb-4 col-span-2">
-                    <h2 className="text-xl font-semibold">Color Category</h2>
+                    <h2 className="text-xl font-semibold">Color Trash</h2>
                     <div className="flex col-span-2 gap-3 ">
-                        
+
                         <Link href="/admin/color" className="bg-blue-500 text-white px-4 py-2 rounded flex items-center hover:bg-blue-600">
                             Back to view
                         </Link>
@@ -42,7 +42,10 @@ const ColorPage = async () => {
                                 <td className="p-2 border">{color.colorname}</td>
                                 <td className="p-2 border">{color.colorslug}</td>
                                 <td className="p-2 border">
-                                    <ToggleStatuscolor apiURl={"/color/change-status/"} status={color.status} id={color._id} />
+                                    <button className={`${color.status ? 'bg-green-500' : 'bg-red-500'} 
+            hover:text-${color.status ? 'green' : 'red'}-600 mx-2 p-2 rounded-md text-white`}>
+                                        {color.status ? 'Active' : 'Inactive'}
+                                    </button>
                                 </td>
                                 <td className="p-2 border flex justify-center  ">
                                     <div
@@ -53,7 +56,7 @@ const ColorPage = async () => {
                                 </td>
                                 <td className="p-2 border">{timesago(color.createdAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3 ">
-                                     <RestoreColor apiurl={`/color/restore/${color._id}`} className="text-xl my-[10px]" />
+                                    <RestoreColor apiurl={`/color/restore/${color._id}`} className="text-xl my-[10px]" />
 
 
                                     <DeleteBtncolor flag={0} deleteURL={`/color/delete/${color._id}`} />

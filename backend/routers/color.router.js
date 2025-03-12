@@ -9,7 +9,7 @@ ColorRouter.post(
 );
 
 ColorRouter.get(
-    '/get-data',
+    '/get-data/:id?',
     Colorcontroller.readColorData
 );
 ColorRouter.patch(
@@ -33,5 +33,9 @@ ColorRouter.patch(
     '/restore/:id',
     Colorcontroller.restore
 )
+ColorRouter.put(
+    '/update/:id',
+    Colorcontroller.update
+);
 
 module.exports = ColorRouter;

@@ -52,7 +52,7 @@ const ColorPage = async () => {
                                     >
                                     </div>
                                 </td>
-                                <td className="p-2 border">{timesago(color.createdAt)}</td>
+                                <td className="p-2 border">{timesago(color.createdAt)}/{timesago(color.updatedAt)}</td>
                                 <td className="p-2 border flex justify-center gap-3 ">
                                     <Link href={`/admin/color/edit/${color._id}`}>
                                         <button className="text-yellow-500 hover:text-yellow-600 my-[10px]">

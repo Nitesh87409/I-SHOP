@@ -2,6 +2,27 @@ const Color = require('../models/color.model');
 
 const ColorController = {
 
+    async update(req, res) {
+        try {
+            const id = req.params.id;
+            const data = req.body;
+            Color.findByIdAndUpdate(id, { colorname: data.name, colorslug: data.slug , color_code: data.colorcode})
+                .then(
+                    () => {
+                        res.send({ msg: "Color updated", flag: 1 });
+                    }
+                ).catch(
+                    () => {
+                        res.send({ msg: "Unable to update Color", flag: 0 });
+                    }
+                )
+
+        } catch (error) {
+            res.send({ msg: "Internal server error", flag: 0 });
+
+        }
+    },
+
     restore(req, res) {
         try {
             const id = req.params.id
