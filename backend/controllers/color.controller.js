@@ -150,11 +150,11 @@ const ColorController = {
     async createcolor(req, res) {
         try {
             const { colorname } = req.body;
-
+            
             // Check if the color already exists
             const existingColor = await Color.findOne({ colorname });
             if (existingColor) {
-                return res.status(400).json({ msg: "Color already exists", flag: 0 });
+                return res.status(200).json({ msg: "Color already exists", flag: 0 });
             }
 
             // Create and save the new color
