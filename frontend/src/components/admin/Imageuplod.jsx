@@ -23,7 +23,7 @@ const Imageuplod = () => {
                 
 
             {perv_image ?
-                <img src={perv_image} height={200} width={200} alt="preview" />
+                <img src={perv_image} height={100} width={80} alt="preview" />
                 : <>
                 <FiUploadCloud className="text-3xl text-gray-500" />
                 <p className="text-gray-500">Drag 'n' drop some files here, or click to select files</p>

@@ -54,11 +54,12 @@ const ProductPage = async () => {
                                     </td>
                                 <td className="p-2 border">{products.category_id.name}</td>
                                 <td className="p-2 border">
-                                    <ul>
+                                    <ul key={products._id}>
                                         {
                                             products.colors.map(
                                                 (color, index) => {
-                                            return <li><p className="rounded-full w-10 h-5 my-[10px] border border-black" style={{background:color.color_code}}></p>{color.colorname}</li>
+                                            return <li><p className="rounded-full w-10 h-5 my-[10px]
+                                             border border-white" style={{background:color.color_code}}></p>{color.colorname}</li>
                                         })
                                         }
                                     </ul>

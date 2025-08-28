@@ -5,6 +5,11 @@ import { timesago } from "@/library/helper";
 import {DeleteBtncolor} from "@/components/admin/DeleteBtn";
 import {ToggleStatuscolor} from "@/components/admin/ToggleStatus";
 
+function capitalizeFirstLetter(string) {
+    if (!string) return "";
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 
 const ColorPage = async () => {
     const colorJson = await getColorData();
@@ -24,7 +29,7 @@ const ColorPage = async () => {
                         </Link>
                     </div>
                 </div>
-                <table className="w-full border-collapse">
+                <table className="w-full border-collapse">              
                     <thead>
                         <tr className="bg-gray-100 text-left">
                             <th className="p-2 border">ID</th>
@@ -40,7 +45,7 @@ const ColorPage = async () => {
                         {colorJson != null && colordata.map((color, index) => (
                             <tr key={color._id} className="hover:bg-gray-50 text-center">
                                 <td className="p-2 border">{index + 1}</td>
-                                <td className="p-2 border">{color.colorname}</td>
+                                <td className="p-2 border">{capitalizeFirstLetter(color.colorname)}</td>
                                 <td className="p-2 border">{color.colorslug}</td>
                                 <td className="p-2 border">
                                     <ToggleStatuscolor apiURl={"/color/change-status/"} status={color.status} id={color._id} />
